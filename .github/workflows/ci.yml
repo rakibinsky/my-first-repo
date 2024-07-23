@@ -1,20 +1,13 @@
-name: CI
+name: Simple CI
 
-on: [push, pull_request]
+on: [push]
 
 jobs:
-  build:
+  run-script:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.x
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Run hello_world.py
-        run: |
-          python hello_world.py
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Run hello_world.sh
+      run: ./hello_world.sh
